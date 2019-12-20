@@ -7,7 +7,7 @@ const ImageLinkForm = () => (
 		<div className='flex justify-center'>
 			<div className='form center pa4 br3 shadow-5 flex items-center'>
 				<input className='f4 pa2 w-70 center' type='text' />
-				<button className='w-30 grow f5 h-100 br2 link pv2 dib white bg-light-purple ba b--purple'>
+				<button className='w-30 flex justify-center grow f4 h-100 br2 link pv2 dib white bg-light-purple ba b--purple'>
 					Detect
 				</button>
 			</div>
