@@ -4,7 +4,7 @@ import './Logo.css';
 import brainLogo from './logo.png';
 
 const Logo = () => (
-	<div className='ma4 mt0'>
+	<div className='ma4 mt0 flex justify-center justify-start-ns'>
 		<Tilt
 			className='Tilt br2 shadow-2'
 			options={{ max: 55 }}

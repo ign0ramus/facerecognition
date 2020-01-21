@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
-const SignIn = ({ onRouteChange }) => {
-	return (
-		<article className='br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center'>
+const SignIn = () => {
+	const [redirect, setRedirect] = useState(false);
+
+	const onSubmit = e => {
+		e.preventDefault();
+		setRedirect(true);
+	};
+
+	return redirect ? (
+		<Redirect to='/' />
+	) : (
+		<article className='br3 ba b--black-10 w-100 w-50-m w-25-l mw6 shadow-5 absoluteCenter'>
 			<main className='pa4 black-80'>
-				<form className='measure' onSubmit={() => onRouteChange('home')}>
+				<form className='measure' onSubmit={onSubmit}>
 					<fieldset id='sign_up' className='ba b--transparent ph0 mh0'>
 						<legend className='f1 fw6 ph0 mh0'>Sign In</legend>
 						<div className='mt3'>
@@ -38,12 +48,8 @@ const SignIn = ({ onRouteChange }) => {
 						/>
 					</div>
 					<div className='lh-copy mt3'>
-						<a
-							href='#0'
-							onClick={() => onRouteChange('register')}
-							className='f6 link dim black db'
-						>
-							Register
+						<a href='/sign-up' className='f6 link dim black db'>
+							Sign Up
 						</a>
 					</div>
 				</form>

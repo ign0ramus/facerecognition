@@ -1,32 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Navigation = ({ onRouteChange, isSignIn }) =>
+const LinkTachyonsClasses = 'link dim black f4 f3-ns underline pa3';
+const Navigation = ({ isSignIn }) =>
 	isSignIn ? (
 		<nav className='flex justify-end'>
-			<a
-				href='#0'
-				onClick={() => onRouteChange('signIn')}
-				className='link dim black f3 underline pa3'
-			>
-				Sign Out
-			</a>
+			<Link to='/sign-in' className={LinkTachyonsClasses}>
+				Sign out
+			</Link>
 		</nav>
 	) : (
-		<nav className='flex justify-end'>
-			<a
-				href='#0'
-				onClick={() => onRouteChange('signIn')}
-				className='link dim black f3 underline pa3'
-			>
+		<nav className='flex justify-center justify-end-ns'>
+			<Link to='/sign-in' className={LinkTachyonsClasses}>
 				Sign In
-			</a>
-			<a
-				href='#0'
-				onClick={() => onRouteChange('register')}
-				className='link dim black f3 underline pa3'
-			>
-				Register
-			</a>
+			</Link>
+			<Link to='/sign-up' className={LinkTachyonsClasses}>
+				Sign Up
+			</Link>
 		</nav>
 	);
 
