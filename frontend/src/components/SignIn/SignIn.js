@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import UserContext from '../../context/UserContext';
 
-const SignIn = () => {
-	const [redirect, setRedirect] = useState(false);
+const SignIn = props => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const { user, signIn } = useContext(UserContext.Consumer);
 
 	const onChange = e => {
 		const { target } = e;
@@ -17,29 +17,10 @@ const SignIn = () => {
 
 	const onSubmit = async e => {
 		e.preventDefault();
-		try {
-			const res = await fetch('http://localhost:5050/sign-in', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					email,
-					password,
-				}),
-			});
-			const jsonRes = await res.json();
-			// TODO: change to proper respond validation
-			// added just for testing (change soon)
-			if (jsonRes === 'sign-in') {
-				setRedirect(true);
-			}
-		} catch (err) {
-			console.error(err);
-		}
+		signIn({ email, password });
 	};
 
-	return redirect ? (
-		<Redirect to='/' />
-	) : (
+	return (
 		<article className='br3 ba b--black-10 w-100 w-50-m w-25-l mw6 shadow-5 absoluteCenter'>
 			<main className='pa4 black-80'>
 				<form className='measure' onSubmit={onSubmit}>

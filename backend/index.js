@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
-const PORT = 5050;
+const PORT = process.env.PORT || 5050;
 
 const db = {
 	users: [
@@ -89,5 +89,5 @@ app.put('/image', (req, res) => {
 });
 
 app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
+	console.log(`Server is up on port ${PORT}`);
 });

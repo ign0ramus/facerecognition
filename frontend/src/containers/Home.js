@@ -9,7 +9,7 @@ const clarifaiApp = new Clarifai.App({
 	apiKey: 'test',
 });
 
-const Home = () => {
+const Home = props => {
 	const [inputUrl, setInputUrl] = useState('');
 	const [boundingBoxes, setBoundingBoxes] = useState(null);
 
@@ -24,16 +24,6 @@ const Home = () => {
 				Clarifai.FACE_DETECT_MODEL,
 				inputUrl
 			);
-			const updateRankRes = await fetch('http://localhost:5050/image', {
-				method: 'PUT',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					id: 1,
-				}),
-			});
-			//TODO: change to proper result reaction
-			const updateRankResJson = await updateRankRes.json();
-			console.log(updateRankResJson);
 			setBoundingBoxesPosition(res);
 		} catch (err) {
 			console.error(err);

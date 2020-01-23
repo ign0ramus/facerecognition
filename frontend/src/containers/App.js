@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import Navigation from '../components/Navigation/Navigation';
 import Routes from './Routes';
+import UserContext from '../context/UserContext';
 
 const particlesOptions = {
 	particles: {
@@ -22,8 +23,10 @@ const App = () => {
 		<div className='App'>
 			<Particles className='particles' params={particlesOptions} />
 			<Router>
-				<Navigation />
-				<Routes />
+				<UserContext.Provider>
+					<Navigation />
+					<Routes />
+				</UserContext.Provider>
 			</Router>
 		</div>
 	);

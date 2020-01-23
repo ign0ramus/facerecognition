@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const SignUp = () => {
+const SignUp = props => {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -18,24 +18,6 @@ const SignUp = () => {
 
 	const onSubmit = async e => {
 		e.preventDefault();
-		console.log('here')
-		try {
-			const res = await fetch('http://localhost:5050/sign-up', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					name,
-					email,
-					password,
-				}),
-			});
-			const jsonRes = await res.json();
-			// TODO: change to proper respond validation
-			// added just for testing (change soon)
-			console.log(jsonRes)
-		} catch (err) {
-			console.error(err);
-		}
 	}
 
 	return (
