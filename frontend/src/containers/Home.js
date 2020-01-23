@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Clarifai from 'clarifai';
 import Rank from '../components/Rank/Rank';
 import Facerecognition from '../components/Facerecognition/Facerecognition';
 import Logo from '../components/Logo/Logo';
 import ImageLinkForm from '../components/ImageLinkForm/ImageLinkForm';
+import UserContext from '../context/UserContext';
+import { Redirect } from 'react-router-dom';
+import { SIGN_IN_URL } from '../const/urls';
 
 const clarifaiApp = new Clarifai.App({
 	apiKey: 'test',
 });
 
-const Home = props => {
+const Home = () => {
 	const [inputUrl, setInputUrl] = useState('');
 	const [boundingBoxes, setBoundingBoxes] = useState(null);
+	const { user } = useContext(UserContext.Consumer);
 
 	const handleChange = e => {
 		setBoundingBoxes(null);
@@ -51,11 +55,11 @@ const Home = props => {
 			};
 		});
 
-	return (
+	return !user ? <Redirect to={SIGN_IN_URL}/> : (
 		<>
 			<Logo />
 			<div className='absoluteCenter'>
-				<Rank />
+				<Rank name={user.name} rank={user.rank} joined={user.joined}/>
 				<ImageLinkForm
 					onChange={handleChange}
 					onClick={handleImageLinkFormClick}

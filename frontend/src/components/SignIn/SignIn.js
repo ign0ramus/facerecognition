@@ -1,10 +1,13 @@
 import React, { useState, useContext } from 'react';
 import UserContext from '../../context/UserContext';
+import Error from '../Error/Error';
 
-const SignIn = props => {
+const SignIn = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const { user, signIn } = useContext(UserContext.Consumer);
+	const [ error, setError ] = useState(null);
+
+	const { signIn } = useContext(UserContext.Consumer);
 
 	const onChange = e => {
 		const { target } = e;
@@ -17,7 +20,10 @@ const SignIn = props => {
 
 	const onSubmit = async e => {
 		e.preventDefault();
-		signIn({ email, password });
+		const err = await signIn({ email, password });
+		if (err) {
+			setError(err);
+		}
 	};
 
 	return (
@@ -51,6 +57,7 @@ const SignIn = props => {
 							/>
 						</div>
 					</fieldset>
+					<Error text={error} />
 					<div className=''>
 						<input
 							className='b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib'
