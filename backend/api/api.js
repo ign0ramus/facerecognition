@@ -1,71 +1,54 @@
-// const bcrypt = require('bcryptjs');
-const db = require('../mock/db');
+const { getUser, incrementUserEntiries, createNewUser, calcUserRank } = require('../db/methods');
 const {
 	sendUnauthorized,
 	sendNotFound,
 	sendBadRequest,
-} = require('../errors/errors.js');
+} = require('../errors/errorResponses');
 const { validateSignUp } = require('../validator/validator');
 
-const calcUserRank = user => {
-	const usersWithMoreEntries = db.users.filter(
-		elem => elem.id !== user.id && elem.entries > user.entries
-	);
-	return usersWithMoreEntries.length + 1;
-};
-
-const userToDTO = user => {
-	const { name, email, joined } = user;
+const userToDTO = async user => {
 	return {
 		user: {
-			name,
-			email,
-			rank: calcUserRank(user),
-			joined,
+			...user,
+			rank: await calcUserRank(user),
 		},
 	};
 };
 
-const signIn = (req, res) => {
-	const user = db.users.find(
-		user => user.email === req.body.email && user.password === req.body.password
-	);
-
-	if (!user) {
-		return sendUnauthorized(res);
+const signIn = async (req, res, next) => {
+	try {
+		const user = await getUser(req.body);
+		if (!user) {
+			return sendUnauthorized(res);
+		}
+		res.json(await userToDTO(user));
+	} catch (err) {
+		next(err);
 	}
-	res.json(userToDTO(user));
 };
 
-const signUp = (req, res) => {
-	const { name, email, password } = req.body;
-
-	const err = validateSignUp({ name, email, password });
-	if (err) {
-		return sendBadRequest(res, err);
+const signUp = async (req, res, next) => {
+	try {
+		const { name, email, password } = req.body;
+		const err = await validateSignUp({ name, email, password });
+		if (err) {
+			return sendBadRequest(res, err);
+		}
+		const user = await createNewUser({ name, emaihash
 	}
-
-	const id = db.users[db.users.length - 1].id + 1;
-	const user = {
-		name: `${name.charAt(0).toUpperCase()}${name.slice(1)}`,
-		email,
-		password,
-		id,
-		entries: 0,
-		joined: new Date(),
-	};
-	db.users.push(user);
-	res.json(userToDTO(user));
 };
 
-const uploadImage = (req, res) => {
-	const { id } = req.body;
-	const user = db.users.find(user => user.id == id);
-	if (user) {
-		user.entries += 1;
-		return res.json(user.entries);
+const uploadImage = async (req, res, next) => {
+	try {
+		const { id } = req.body;
+		const user = await incrementUserEntiries(id);
+		if (user) {
+			return res.json({rank: await calcUserRank(user)});
+		}
+		sendNotFound(res);
+	} catch (err) {
+		next(err);
 	}
-	sendNotFound(res);
 };
 
 module.exports = {

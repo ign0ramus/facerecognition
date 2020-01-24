@@ -7,7 +7,7 @@ const sendNotFound = res => {
 };
 
 const sendBadRequest = (res, error) => {
-	res.status(400).send({ error });
+	res.status(400).send(error);
 };
 
 module.exports = {
