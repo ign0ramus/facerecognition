@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d56e276e7569aa348f3a61e463676b8c",
+    "revision": "8e11900a2940182c802ad8ca83ea995f",
     "url": "/facerecognition/index.html"
   },
   {
@@ -8,11 +8,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/facerecognition/static/css/2.86cbe886.chunk.css"
   },
   {
-    "revision": "bd8227c4c552377639dc",
+    "revision": "c414049ae7bfabb49810",
     "url": "/facerecognition/static/css/4.37e28ac2.chunk.css"
   },
   {
-    "revision": "407df762be9361f33ad4",
+    "revision": "50febc3c74924cecd4d4",
     "url": "/facerecognition/static/css/main.e7585ad0.chunk.css"
   },
   {
@@ -32,23 +32,23 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/facerecognition/static/js/3.64762eb9.chunk.js.LICENSE"
   },
   {
-    "revision": "bd8227c4c552377639dc",
-    "url": "/facerecognition/static/js/4.5d00156c.chunk.js"
+    "revision": "c414049ae7bfabb49810",
+    "url": "/facerecognition/static/js/4.f6716788.chunk.js"
   },
   {
-    "revision": "e494de4e093d68b7ec05",
-    "url": "/facerecognition/static/js/5.9d234828.chunk.js"
+    "revision": "60c920bb77c99069f27d",
+    "url": "/facerecognition/static/js/5.a032092d.chunk.js"
   },
   {
-    "revision": "25ea03ad7910a3cf0770",
-    "url": "/facerecognition/static/js/6.11d4eb26.chunk.js"
+    "revision": "cd03100a8c4137a29448",
+    "url": "/facerecognition/static/js/6.b4a7bed0.chunk.js"
   },
   {
-    "revision": "407df762be9361f33ad4",
-    "url": "/facerecognition/static/js/main.f5e62482.chunk.js"
+    "revision": "50febc3c74924cecd4d4",
+    "url": "/facerecognition/static/js/main.5665ae73.chunk.js"
   },
   {
-    "revision": "3e0f30609e7b55b79dad",
-    "url": "/facerecognition/static/js/runtime-main.95219f04.js"
+    "revision": "caee7179475dc22b4192",
+    "url": "/facerecognition/static/js/runtime-main.682cee68.js"
   }
 ]);
