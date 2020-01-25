@@ -56,7 +56,7 @@ const getUser = async ({ email, password }) => {
 	return null;
 };
 
-const incrementUserEntiries = async id => {
+const incrementUserEntries = async id => {
 	const result = await db('users')
 		.where({ id })
 		.increment('entries', 1)
@@ -68,6 +68,6 @@ module.exports = {
 	createNewUser,
 	calcUserRank,
 	isEmailExists,
-	incrementUserEntiries,
+	incrementUserEntries,
 	getUser,
 };

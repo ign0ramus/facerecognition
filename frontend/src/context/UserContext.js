@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { SIGN_IN_API, SIGN_UP_API, UPLOAD_IMAGE_API } from '../const/api';
 import { HOME_URL } from '../const/urls';
-import { postRequest, putRequest } from '../helpers/fetch';
+import { postRequest } from '../helpers/fetch';
 const UserContext = React.createContext();
 
 const UserContextProvider = props => {
@@ -40,7 +40,14 @@ const UserContextProvider = props => {
 		addUserData(res.user);
 	};
 
-	const uploadImage = async data => {};
+	const uploadImage = async data => {
+		const res = await postRequest(UPLOAD_IMAGE_API, data);
+		if (res.error) {
+			return res;
+		}
+		setUser(res.user);
+		return res;
+	};
 
 	const signOut = () => setUser(null);
 
