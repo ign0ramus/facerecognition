@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { SIGN_IN_API, SIGN_UP_API, UPLOAD_IMAGE_API } from '../const/api';
+import {
+	SIGN_IN_API,
+	SIGN_UP_API,
+	UPLOAD_IMAGE_API,
+	CHECK_USER_API,
+	SIGN_OUT_API,
+} from '../const/api';
 import { HOME_URL } from '../const/urls';
 import { postRequest } from '../helpers/fetch';
 const UserContext = React.createContext();
@@ -16,6 +22,14 @@ const UserContextProvider = props => {
 			history.push(HOME_URL);
 		}
 	}, [history, user]);
+
+	useEffect(() => {
+		const checkUser = async () => {
+			const res = await postRequest(CHECK_USER_API, {});
+			setUser(res.user);
+		};
+		checkUser();
+	}, []);
 
 	const addUserData = user => {
 		setUser(user);
@@ -49,7 +63,10 @@ const UserContextProvider = props => {
 		return res;
 	};
 
-	const signOut = () => setUser(null);
+	const signOut = async () => {
+		setUser(null);
+		await postRequest(SIGN_OUT_API, {});
+	};
 
 	const contextValue = {
 		user,

@@ -3,6 +3,7 @@ const requestData = async (method, link, data) => {
 		const res = await fetch(link, {
 			method: method,
 			headers: { 'Content-Type': 'application/json' },
+			credentials: 'include',
 			body: JSON.stringify(data),
 		});
 		return await res.json();

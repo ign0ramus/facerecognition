@@ -40,7 +40,7 @@ const isEmailExists = async email => {
 	return count > 0;
 };
 
-const getUser = async ({ email, password }) => {
+const getUserByCreds = async ({ email, password }) => {
 	const login = await db
 		.select('email', 'hash')
 		.from('login')
@@ -64,10 +64,16 @@ const incrementUserEntries = async id => {
 	return result[0];
 };
 
+const getUserById = async id => {
+	const result = await db('users').where({ id });
+	return result[ 0 ];
+}
+
 module.exports = {
 	createNewUser,
 	calcUserRank,
 	isEmailExists,
 	incrementUserEntries,
-	getUser,
+	getUserByCreds,
+	getUserById,
 };

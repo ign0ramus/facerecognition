@@ -1,8 +1,9 @@
 const {
-	getUser,
+	getUserByCreds,
 	incrementUserEntries,
 	createNewUser,
 	calcUserRank,
+	getUserById,
 } = require('../db/methods');
 
 const {
@@ -22,10 +23,12 @@ const userToDTO = async user => {
 
 const signIn = async (req, res, next) => {
 	try {
-		const user = await getUser(req.body);
+		const user = await getUserByCreds(req.body);
 		if (!user) {
 			return sendUnauthorized(res);
 		}
+		req.session.userId = user.id;
+
 		res.json({ user: await userToDTO(user) });
 	} catch (err) {
 		next(err);
@@ -39,6 +42,7 @@ const signUp = async (req, res, next) => {
 			return sendBadRequest(res, err);
 		}
 		const user = await createNewUser(req.body);
+		req.session.userId = user.id;
 		res.json({ user: await userToDTO(user) });
 	} catch (err) {
 		next(err);
@@ -47,6 +51,9 @@ const signUp = async (req, res, next) => {
 
 const uploadImage = async (req, res, next) => {
 	try {
+		if (!req.session.userId) {
+			res.send(400);
+		}
 		const { id, image } = req.body;
 		const user = await incrementUserEntries(id);
 		if (user) {
@@ -59,8 +66,34 @@ const uploadImage = async (req, res, next) => {
 	}
 };
 
+const checkUser = async (req, res, next) => {
+	try {
+		const { userId } = req.session;
+		if (!userId) {
+			return res.json({ user: null });
+		}
+
+		const user = await getUserById(userId);
+		res.json({ user: await userToDTO(user) });
+	} catch (err) {
+		console.error(err);
+		next();
+	}
+};
+
+const signOut = (req, res) => {
+	req.session.destroy(err => {
+		if (err) {
+			return res.redirect('/');
+		}
+		res.clearCookie(process.env.SESSION_NAME);
+	});
+};
+
 module.exports = {
 	signIn,
 	signUp,
 	uploadImage,
+	checkUser,
+	signOut,
 };
