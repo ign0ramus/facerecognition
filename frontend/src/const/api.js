@@ -1,4 +1,5 @@
-const API = process.env.FACERECOGNITION_BACKEND_URL || 'http://localhost:5050';
+const API =
+	process.env.REACT_APP_FACERECOGNITION_BACKEND_URL || 'http://localhost:5050';
 
 export const SIGN_IN_API = `${API}/sign-in`;
 export const SIGN_UP_API = `${API}/sign-up`;
