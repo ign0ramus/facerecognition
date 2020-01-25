@@ -1,4 +1,4 @@
-const API = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000';
+const API = 'https://sheltered-woodland-30586.herokuapp.com';
 
 export const SIGN_IN_API = `${API}/sign-in`;
 export const SIGN_UP_API = `${API}/sign-up`;
