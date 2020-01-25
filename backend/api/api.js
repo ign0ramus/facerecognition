@@ -1,4 +1,9 @@
-const { getUser, incrementUserEntiries, createNewUser, calcUserRank } = require('../db/methods');
+const {
+	getUser,
+	incrementUserEntiries,
+	createNewUser,
+	calcUserRank,
+} = require('../db/methods');
 const {
 	sendUnauthorized,
 	sendNotFound,
@@ -29,12 +34,14 @@ const signIn = async (req, res, next) => {
 
 const signUp = async (req, res, next) => {
 	try {
-		const { name, email, password } = req.body;
-		const err = await validateSignUp({ name, email, password });
+		const err = await validateSignUp(req.body);
 		if (err) {
 			return sendBadRequest(res, err);
 		}
-		const user = await createNewUser({ name, emaihash
+		const user = await createNewUser(req.body);
+		res.json(await userToDTO(user));
+	} catch (err) {
+		next(err);
 	}
 };
 
@@ -43,7 +50,7 @@ const uploadImage = async (req, res, next) => {
 		const { id } = req.body;
 		const user = await incrementUserEntiries(id);
 		if (user) {
-			return res.json({rank: await calcUserRank(user)});
+			return res.json({ rank: await calcUserRank(user) });
 		}
 		sendNotFound(res);
 	} catch (err) {
