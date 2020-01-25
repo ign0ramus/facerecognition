@@ -1,7 +1,7 @@
 const Clarifai = require('clarifai');
 
 const clarifaiApp = new Clarifai.App({
-	apiKey: 'test',
+	apiKey: process.env.CLARIFAI_API_KEY,
 });
 
 const recognizeFace = async image => {
