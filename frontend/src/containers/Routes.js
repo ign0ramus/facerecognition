@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
+import { SIGN_IN_URL, SIGN_UP_URL } from '../const/urls';
 
 const minDelay = 500;
 const Home = lazy(async () => {
@@ -26,11 +27,11 @@ const SignUp = lazy(async () => {
 });
 
 const Routes = () => (
-	<Suspense fallback={<Loader color='secondary'/>}>
+	<Suspense fallback={<Loader color='secondary' />}>
 		<Switch>
 			<Route exact path='/' component={Home} />
-			<Route path='/sign-in' component={SignIn} />
-			<Route path='/sign-up' component={SignUp} />
+			<Route path={SIGN_IN_URL} component={SignIn} />
+			<Route path={SIGN_UP_URL} component={SignUp} />
 		</Switch>
 	</Suspense>
 );
