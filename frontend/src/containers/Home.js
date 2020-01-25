@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Rank from '../components/Rank/Rank';
 import Facerecognition from '../components/Facerecognition/Facerecognition';
 import Logo from '../components/Logo/Logo';
@@ -9,8 +9,15 @@ import { SIGN_IN_URL } from '../const/urls';
 
 const Home = () => {
 	const [inputUrl, setInputUrl] = useState('');
-	const [boundingBoxes, setBoundingBoxes] = useState(null);
+	const [ boundingBoxes, setBoundingBoxes ] = useState(null);
+	const [ isLoading, setIsLoading ] = useState(false);
 	const { user, uploadImage } = useContext(UserContext.Consumer);
+
+	useEffect(() => {
+		if (isLoading && boundingBoxes) {
+			setIsLoading(false);
+		}
+	}, [ isLoading, boundingBoxes ]);
 
 	const handleChange = e => {
 		setBoundingBoxes(null);
@@ -18,7 +25,8 @@ const Home = () => {
 	};
 
 	const handleImageLinkFormClick = async () => {
-		const result = await uploadImage({image: inputUrl, id: user.id});
+		setIsLoading(true);
+		const result = await uploadImage({ image: inputUrl, id: user.id });
 		if (result.error) {
 			return alert(result.error);
 		}
@@ -30,14 +38,12 @@ const Home = () => {
 	) : (
 		<>
 			<Logo />
-			<div className='absoluteCenter'>
-				<Rank name={user.name} rank={user.rank} joined={user.joined} />
-				<ImageLinkForm
-					onChange={handleChange}
-					onClick={handleImageLinkFormClick}
-				/>
-				<Facerecognition url={inputUrl} boxes={boundingBoxes} />
-			</div>
+			<Rank user={user} />
+			<ImageLinkForm
+				onChange={handleChange}
+				onClick={handleImageLinkFormClick}
+			/>
+			<Facerecognition isLoading={isLoading} url={inputUrl} boxes={boundingBoxes} />
 		</>
 	);
 };
