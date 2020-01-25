@@ -1,22 +1,22 @@
 const {
 	getUser,
-	incrementUserEntiries,
+	incrementUserEntries,
 	createNewUser,
 	calcUserRank,
 } = require('../db/methods');
+
 const {
 	sendUnauthorized,
 	sendNotFound,
 	sendBadRequest,
 } = require('../errors/errorResponses');
+const { recognizeFace } = require('./clarifaiApi');
 const { validateSignUp } = require('../validator/validator');
 
 const userToDTO = async user => {
 	return {
-		user: {
-			...user,
-			rank: await calcUserRank(user),
-		},
+		...user,
+		rank: await calcUserRank(user),
 	};
 };
 
@@ -26,7 +26,7 @@ const signIn = async (req, res, next) => {
 		if (!user) {
 			return sendUnauthorized(res);
 		}
-		res.json(await userToDTO(user));
+		res.json({ user: await userToDTO(user) });
 	} catch (err) {
 		next(err);
 	}
@@ -39,7 +39,7 @@ const signUp = async (req, res, next) => {
 			return sendBadRequest(res, err);
 		}
 		const user = await createNewUser(req.body);
-		res.json(await userToDTO(user));
+		res.json({ user: await userToDTO(user) });
 	} catch (err) {
 		next(err);
 	}
@@ -47,10 +47,11 @@ const signUp = async (req, res, next) => {
 
 const uploadImage = async (req, res, next) => {
 	try {
-		const { id } = req.body;
-		const user = await incrementUserEntiries(id);
+		const { id, image } = req.body;
+		const user = await incrementUserEntries(id);
 		if (user) {
-			return res.json({ rank: await calcUserRank(user) });
+			const result = await recognizeFace(image);
+			return res.json({ user: await userToDTO(user), boundingBox: result });
 		}
 		sendNotFound(res);
 	} catch (err) {

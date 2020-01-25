@@ -11,7 +11,7 @@ app.use(cors());
 
 app.post('/sign-up', signUp);
 app.post('/sign-in', signIn);
-app.put('/upload-image', uploadImage);
+app.post('/upload-image', uploadImage);
 
 app.use((err, req, res, next) => {
 	console.error(err);
