@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8e11900a2940182c802ad8ca83ea995f",
+    "revision": "14577ed385a5eeb0346dea7f462b93c3",
     "url": "/facerecognition/index.html"
   },
   {
-    "revision": "4a430fecbcbdeb23302a",
+    "revision": "c1745d78ff319960e33c",
     "url": "/facerecognition/static/css/2.86cbe886.chunk.css"
   },
   {
-    "revision": "c414049ae7bfabb49810",
+    "revision": "f8472a5eae5fe0b6ffb8",
     "url": "/facerecognition/static/css/4.37e28ac2.chunk.css"
   },
   {
-    "revision": "50febc3c74924cecd4d4",
+    "revision": "de31ec7b6f54c4e8414d",
     "url": "/facerecognition/static/css/main.e7585ad0.chunk.css"
   },
   {
-    "revision": "4a430fecbcbdeb23302a",
-    "url": "/facerecognition/static/js/2.dbd8c975.chunk.js"
+    "revision": "c1745d78ff319960e33c",
+    "url": "/facerecognition/static/js/2.596264f2.chunk.js"
   },
   {
     "revision": "e928fe768baa9832b5bc57eae021f30c",
-    "url": "/facerecognition/static/js/2.dbd8c975.chunk.js.LICENSE"
+    "url": "/facerecognition/static/js/2.596264f2.chunk.js.LICENSE"
   },
   {
     "revision": "8b7f877538ad1c26b3a3",
@@ -32,8 +32,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/facerecognition/static/js/3.64762eb9.chunk.js.LICENSE"
   },
   {
-    "revision": "c414049ae7bfabb49810",
-    "url": "/facerecognition/static/js/4.f6716788.chunk.js"
+    "revision": "f8472a5eae5fe0b6ffb8",
+    "url": "/facerecognition/static/js/4.6425b9ad.chunk.js"
   },
   {
     "revision": "60c920bb77c99069f27d",
@@ -44,11 +44,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/facerecognition/static/js/6.b4a7bed0.chunk.js"
   },
   {
-    "revision": "50febc3c74924cecd4d4",
-    "url": "/facerecognition/static/js/main.5665ae73.chunk.js"
+    "revision": "de31ec7b6f54c4e8414d",
+    "url": "/facerecognition/static/js/main.3840d9ed.chunk.js"
   },
   {
-    "revision": "caee7179475dc22b4192",
-    "url": "/facerecognition/static/js/runtime-main.682cee68.js"
+    "revision": "b2dade5e0f220b1df384",
+    "url": "/facerecognition/static/js/runtime-main.2da699c8.js"
   }
 ]);
