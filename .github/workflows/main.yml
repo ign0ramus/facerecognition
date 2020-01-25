@@ -22,8 +22,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
 
         with:
-          BRANCH: gh-pages
-          FOLDER: frontend/build
-        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REACT_APP_FACERECOGNITION_BACKEND_URL: ${{ secrets.FACERECOGNITION_BACKEND_URL }}
+          BRANCH: gh-pages
+          FOLDER: frontend/build
