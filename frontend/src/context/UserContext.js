@@ -7,7 +7,7 @@ import {
 	CHECK_USER_API,
 	SIGN_OUT_API,
 } from '../const/api';
-import { HOME_URL } from '../const/urls';
+import { HOME_URL, SIGN_IN_URL } from '../const/urls';
 import { postRequest } from '../helpers/fetch';
 const UserContext = React.createContext();
 
@@ -26,7 +26,10 @@ const UserContextProvider = props => {
 	useEffect(() => {
 		const checkUser = async () => {
 			const res = await postRequest(CHECK_USER_API, {});
-			setUser(res.user);
+			if (res.user) {
+				return setUser(res.user);
+			}
+			history.push(SIGN_IN_URL);
 		};
 		checkUser();
 	}, []);
