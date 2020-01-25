@@ -15,7 +15,7 @@ const UserContextProvider = props => {
 		if (pathname !== HOME_URL && Boolean(user)) {
 			history.push(HOME_URL);
 		}
-	}, [history.location.pathname, user]);
+	}, [history, user]);
 
 	const addUserData = user => {
 		setUser(user);

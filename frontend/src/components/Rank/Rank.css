@@ -1,0 +1,19 @@
+.rankContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.rankImgContainer {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+}
+
+.rankImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}

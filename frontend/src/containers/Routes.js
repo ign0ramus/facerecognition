@@ -26,7 +26,7 @@ const SignUp = lazy(async () => {
 });
 
 const Routes = () => (
-	<Suspense fallback={<Loader />}>
+	<Suspense fallback={<Loader color='secondary'/>}>
 		<Switch>
 			<Route exact path='/' component={Home} />
 			<Route path='/sign-in' component={SignIn} />
