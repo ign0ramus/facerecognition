@@ -26,4 +26,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         FACERECOGNITION_BACKEND_URL: ${{ secrets.FACERECOGNITION_BACKEND_URL }}
         BRANCH: gh-pages
-        FOLDER: build
+        FOLDER: ./frontend/build
