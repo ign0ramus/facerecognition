@@ -34,11 +34,6 @@ const sessConfig = {
 	},
 };
 
-if (app.get('env') === 'production') {
-	app.set('trust proxy', 1);
-	sessConfig.cookie.secure = true;
-}
-
 app.use(session(sessConfig));
 
 app.post('/sign-up', signUp);
