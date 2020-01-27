@@ -20,19 +20,25 @@ app.use(
 		credentials: true,
 	})
 );
-app.use(
-	session({
-		name: process.env.SESSION_NAME || 'sid',
-		resave: false,
-		saveUninitialized: false,
-		secret: process.env.SESSION_SECRET || '!secret1',
-		cookie: {
-			maxAge: process.env.SESSION_LIFETIME || ONE_WEEK,
-			sameSite: 'strict',
-			httpOnly: true,
-		},
-	})
-);
+
+const sessConfig = {
+	name: process.env.SESSION_NAME || 'sid',
+	resave: false,
+	saveUninitialized: false,
+	secret: process.env.SESSION_SECRET || '!secret1',
+	cookie: {
+		maxAge: process.env.SESSION_LIFETIME || ONE_WEEK,
+		sameSite: true,
+		httpOnly: true,
+	},
+};
+
+if (app.get('env') === 'production') {
+	app.set('trust proxy', 1);
+	sessConfig.cookie.secure = true;
+}
+
+app.use(session(sessConfig));
 
 app.post('/sign-up', signUp);
 app.post('/sign-in', signIn);
