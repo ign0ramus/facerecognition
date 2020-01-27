@@ -1,6 +1,6 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import './App.css';
 import Navigation from '../components/Navigation/Navigation';
 import Routes from './Routes';
@@ -22,7 +22,7 @@ const App = () => {
 	return (
 		<div className='App'>
 			<Particles className='particles' params={particlesOptions} />
-			<Router>
+			<Router basename='/'>
 				<UserContext.Provider>
 					<Navigation />
 					<Routes />
