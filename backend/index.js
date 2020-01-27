@@ -29,7 +29,9 @@ app.use(
 		cookie: {
 			maxAge: process.env.SESSION_LIFETIME || ONE_WEEK,
 			httpOnly: true,
-			secure: true
+			secure: true,
+			sameSite: false,
+			sameSite: 'none'
 		},
 	})
 );
