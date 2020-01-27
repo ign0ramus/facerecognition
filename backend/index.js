@@ -30,7 +30,7 @@ app.use(
 			maxAge: process.env.SESSION_LIFETIME || ONE_WEEK,
 			httpOnly: true,
 			secure: true,
-			sameSite: 'none'
+			sameSite: true
 		},
 	})
 );
