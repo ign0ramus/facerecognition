@@ -28,7 +28,7 @@ app.use(
 		secret: process.env.SESSION_SECRET || '!secret1',
 		cookie: {
 			maxAge: process.env.SESSION_LIFETIME || ONE_WEEK,
-			sameSite: false,
+			sameSite: 'strict',
 			httpOnly: true,
 		},
 	})
