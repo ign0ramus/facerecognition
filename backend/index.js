@@ -29,7 +29,7 @@ const sessConfig = {
 	proxy: true,
 	cookie: {
 		maxAge: process.env.SESSION_LIFETIME || ONE_WEEK,
-		sameSite: true,
+		sameSite: false,
 		httpOnly: true,
 	},
 };
