@@ -29,10 +29,15 @@ const sessConfig = {
 	proxy: true,
 	cookie: {
 		maxAge: process.env.SESSION_LIFETIME || ONE_WEEK,
-		sameSite: false,
+		sameSite: 'none',
 		httpOnly: true,
 	},
 };
+
+if (app.get('env') === 'production') {
+	app.set('trust proxy', 1);
+	sessConfig.cookie.secure = true;
+}
 
 app.use(session(sessConfig));
 
