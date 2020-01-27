@@ -26,6 +26,7 @@ const sessConfig = {
 	resave: false,
 	saveUninitialized: false,
 	secret: process.env.SESSION_SECRET || '!secret1',
+	proxy: true,
 	cookie: {
 		maxAge: process.env.SESSION_LIFETIME || ONE_WEEK,
 		sameSite: true,
