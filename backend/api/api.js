@@ -52,7 +52,7 @@ const signUp = async (req, res, next) => {
 const uploadImage = async (req, res, next) => {
 	try {
 		if (!req.session.userId) {
-			res.send(400);
+			return res.send(400);
 		}
 		const { id, image } = req.body;
 		const user = await incrementUserEntries(id);
