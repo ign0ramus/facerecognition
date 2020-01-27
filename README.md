@@ -7,7 +7,7 @@ Frontend:
 - React router
 - Tachyons
 
-Backend:
+Backend (deployed on heroku):
 - Express
 - Postgres
 - Knex
