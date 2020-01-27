@@ -32,6 +32,7 @@ const UserContextProvider = props => {
 			history.push(SIGN_IN_URL);
 		};
 		checkUser();
+		//eslint-disable-next-line
 	}, []);
 
 	const addUserData = user => {
