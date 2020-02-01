@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from './Input/Input';
 import Error from './Error/Error';
+import { SIGN_UP_URL } from '../../const/urls';
 
 const Form = props => {
 	const { onChange, onSubmit, legend, error } = props;
@@ -48,8 +49,8 @@ const Form = props => {
 				</form>
 				{isSignIn ? (
 					<div className='lh-copy mt3'>
-						<a href='/sign-up' className='f6 link dim black db'>
-                            {'Sign Up'}
+						<a href={SIGN_UP_URL} className='f6 link dim black db'>
+							{'Sign Up'}
 						</a>
 					</div>
 				) : null}
