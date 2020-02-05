@@ -2,6 +2,7 @@ import React from 'react';
 import Input from './Input/Input';
 import Error from './Error/Error';
 import { SIGN_UP_URL } from '../../const/urls';
+import { Link } from 'react-router-dom';
 
 const Form = props => {
 	const { onChange, onSubmit, legend, error } = props;
@@ -49,9 +50,9 @@ const Form = props => {
 				</form>
 				{isSignIn ? (
 					<div className='lh-copy mt3'>
-						<a href={SIGN_UP_URL} className='f6 link dim black db'>
+						<Link to={SIGN_UP_URL} className='f6 link dim black db'>
 							{'Sign Up'}
-						</a>
+						</Link>
 					</div>
 				) : null}
 			</main>
