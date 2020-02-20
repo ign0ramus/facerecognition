@@ -2,6 +2,8 @@ const express = require('express');
 const session = require('express-session');
 const app = express();
 const cors = require('cors');
+const morgan = require('morgan');
+
 const {
 	signIn,
 	signUp,
@@ -20,7 +22,7 @@ app.use(
 		credentials: true,
 	})
 );
-
+app.use(morgan('combined'));
 const sessConfig = {
 	name: process.env.SESSION_NAME || 'sid',
 	resave: false,
