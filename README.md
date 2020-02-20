@@ -13,3 +13,7 @@ Backend (deployed on heroku):
 - Knex
 - Bcrypt
 - Clarifai API (face recognition API)
+
+Deploy:
+- Docker
+- Docker-compose
