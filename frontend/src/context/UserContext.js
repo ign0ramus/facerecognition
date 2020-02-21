@@ -9,9 +9,9 @@ import {
 } from '../const/api';
 import { HOME_URL, SIGN_IN_URL } from '../const/urls';
 import { postRequest } from '../helpers/fetch';
-const UserContext = React.createContext();
+export const UserContext = React.createContext();
 
-const UserContextProvider = props => {
+export const UserContextProvider = props => {
 	const [user, setUser] = useState(null);
 
 	const history = useHistory();
@@ -86,5 +86,3 @@ const UserContextProvider = props => {
 		</UserContext.Provider>
 	);
 };
-
-export default { Provider: UserContextProvider, Consumer: UserContext };

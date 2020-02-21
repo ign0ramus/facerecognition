@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import Form from '../Form/Form';
+import AuthForm from '../Forms/AuthForm';
 
 const SignUp = () => {
 	const [name, setName] = useState('');
@@ -30,7 +30,7 @@ const SignUp = () => {
 	};
 
 	return (
-		<Form
+		<AuthForm
 			legend='Sign Up'
 			error={error}
 			onChange={onChange}

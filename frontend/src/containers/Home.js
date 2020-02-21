@@ -4,7 +4,7 @@ import Rank from '../components/Rank/Rank';
 import Facerecognition from '../components/Facerecognition/Facerecognition';
 import Logo from '../components/Logo/Logo';
 import ImageLinkForm from '../components/ImageLinkForm/ImageLinkForm';
-import UserContext from '../context/UserContext';
+import { UserContext } from '../context/UserContext';
 import { Redirect } from 'react-router-dom';
 import { SIGN_IN_URL } from '../const/urls';
 
@@ -12,7 +12,7 @@ const Home = () => {
 	const [inputUrl, setInputUrl] = useState('');
 	const [boundingBoxes, setBoundingBoxes] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
-	const { user, uploadImage } = useContext(UserContext.Consumer);
+	const { user, uploadImage } = useContext(UserContext);
 
 	useEffect(() => {
 		if (isLoading && boundingBoxes) {

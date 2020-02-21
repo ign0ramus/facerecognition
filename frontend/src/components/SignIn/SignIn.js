@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../../context/UserContext';
-import Form from '../Form/Form';
+import AuthForm from '../Forms/AuthForm';
 
 const SignIn = () => {
 	const [email, setEmail] = useState('');
@@ -27,7 +27,7 @@ const SignIn = () => {
 	};
 
 	return (
-		<Form
+		<AuthForm
 			legend='Sign In'
 			error={error}
 			onChange={onChange}
