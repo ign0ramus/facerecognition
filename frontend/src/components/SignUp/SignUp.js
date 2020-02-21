@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import UserContext from '../../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 import Form from '../Form/Form';
 
 const SignUp = () => {
@@ -8,7 +8,7 @@ const SignUp = () => {
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState(null);
 
-	const { signUp } = useContext(UserContext.Consumer);
+	const { signUp } = useContext(UserContext);;
 
 	const onChange = e => {
 		const { target } = e;

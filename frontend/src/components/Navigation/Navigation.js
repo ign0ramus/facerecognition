@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import UserContext from '../../context/UserContext';
+import { UserContext } from '../../context/UserContext';
 import { SIGN_IN_URL, SIGN_UP_URL } from '../../const/urls';
+import ProfileIcon from '../Profile/ProfileIcon/ProfileIcon';
 
 const LinkTachyonsClasses = 'link dim black f4 f3-ns underline pa3';
 const Navigation = () => {
-	const { user, signOut } = useContext(UserContext.Consumer);
+	const { user } = useContext(UserContext);
 
 	return user ? (
 		<nav className='flex justify-end'>
-			<Link onClick={signOut} to={SIGN_IN_URL} className={LinkTachyonsClasses}>
-				Sign out
-			</Link>
+			<ProfileIcon />
 		</nav>
 	) : (
 		<nav className='flex justify-center justify-end-ns'>
