@@ -12,7 +12,7 @@ const {
 	sendBadRequest,
 } = require('../errors/errorResponses');
 const { recognizeFace } = require('./clarifaiApi');
-const { validateSignUp } = require('../validator/validator');
+const { validateSignUp, validateUrl } = require('../validator/validator');
 
 const userToDTO = async user => {
 	return {
@@ -55,6 +55,12 @@ const uploadImage = async (req, res, next) => {
 			return res.send(400);
 		}
 		const { id, image } = req.body;
+
+		const err = validateUrl(image);
+		if (err) {
+			return sendBadRequest(res, err);
+		}
+
 		const user = await incrementUserEntries(id);
 		if (user) {
 			const result = await recognizeFace(image);

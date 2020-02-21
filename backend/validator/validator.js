@@ -13,6 +13,13 @@ const validateSignUp = async data => {
 	}
 };
 
+const validateUrl = imageUrl => {
+	if (!validator.isURL(imageUrl)) {
+		return { error: 'Invalid image URL' };
+	}
+};
+
 module.exports = {
 	validateSignUp,
+	validateUrl,
 };

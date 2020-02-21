@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { isURL } from 'validator';
 import Rank from '../components/Rank/Rank';
 import Facerecognition from '../components/Facerecognition/Facerecognition';
 import Logo from '../components/Logo/Logo';
@@ -9,15 +10,15 @@ import { SIGN_IN_URL } from '../const/urls';
 
 const Home = () => {
 	const [inputUrl, setInputUrl] = useState('');
-	const [ boundingBoxes, setBoundingBoxes ] = useState(null);
-	const [ isLoading, setIsLoading ] = useState(false);
+	const [boundingBoxes, setBoundingBoxes] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 	const { user, uploadImage } = useContext(UserContext.Consumer);
 
 	useEffect(() => {
 		if (isLoading && boundingBoxes) {
 			setIsLoading(false);
 		}
-	}, [ isLoading, boundingBoxes ]);
+	}, [isLoading, boundingBoxes]);
 
 	const handleChange = e => {
 		setBoundingBoxes(null);
@@ -25,9 +26,13 @@ const Home = () => {
 	};
 
 	const handleImageLinkFormClick = async () => {
+		if (!isURL(inputUrl)) {
+			return alert('Invalid image URL');
+		}
 		setIsLoading(true);
 		const result = await uploadImage({ image: inputUrl, id: user.id });
 		if (result.error) {
+			setIsLoading(false);
 			return alert(result.error);
 		}
 		setBoundingBoxes(result.boundingBox);
@@ -43,7 +48,11 @@ const Home = () => {
 				onChange={handleChange}
 				onClick={handleImageLinkFormClick}
 			/>
-			<Facerecognition isLoading={isLoading} url={inputUrl} boxes={boundingBoxes} />
+			<Facerecognition
+				isLoading={isLoading}
+				url={inputUrl}
+				boxes={boundingBoxes}
+			/>
 		</>
 	);
 };
