@@ -9,7 +9,6 @@ const {
 	signUp,
 	uploadImage,
 	checkUser,
-	signOut,
 } = require('./api/api');
 
 const PORT = process.env.PORT || 5050;
