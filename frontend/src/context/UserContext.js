@@ -5,7 +5,6 @@ import {
 	SIGN_UP_API,
 	UPLOAD_IMAGE_API,
 	CHECK_USER_API,
-	SIGN_OUT_API,
 } from '../const/api';
 import { HOME_URL, SIGN_IN_URL } from '../const/urls';
 import { postRequest } from '../helpers/fetch';
@@ -29,6 +28,7 @@ export const UserContextProvider = props => {
 			if (res.user) {
 				return setUser(res.user);
 			}
+			localStorage.removeItem('access_token');
 			history.push(SIGN_IN_URL);
 		};
 		checkUser();
@@ -45,7 +45,7 @@ export const UserContextProvider = props => {
 		if (res.error) {
 			return res.error;
 		}
-
+		localStorage.setItem('access_token', res.token);
 		addUserData(res.user);
 	};
 
@@ -54,7 +54,7 @@ export const UserContextProvider = props => {
 		if (res.error) {
 			return res.error;
 		}
-
+		localStorage.setItem('access_token', res.token);
 		addUserData(res.user);
 	};
 
@@ -68,8 +68,8 @@ export const UserContextProvider = props => {
 	};
 
 	const signOut = async () => {
+		localStorage.removeItem('access_token');
 		setUser(null);
-		await postRequest(SIGN_OUT_API, {});
 	};
 
 	const contextValue = {
