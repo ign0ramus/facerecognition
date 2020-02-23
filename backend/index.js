@@ -4,12 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { isAuth } = require('./middleware/auth');
 
-const {
-	signIn,
-	signUp,
-	uploadImage,
-	checkUser,
-} = require('./api/api');
+const { signIn, signUp, uploadImage, checkUser } = require('./api/api');
 
 const PORT = process.env.PORT || 5050;
 
@@ -20,11 +15,6 @@ app.use(
 	})
 );
 app.use(morgan('combined'));
-
-if (app.get('env') === 'production') {
-	app.set('trust proxy', 1);
-	sessConfig.cookie.secure = true;
-}
 
 app.post('/sign-up', signUp);
 app.post('/sign-in', signIn);
